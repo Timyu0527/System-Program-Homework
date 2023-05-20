@@ -1,4 +1,4 @@
-#include "utility.hpp"
+#include "utility.h"
 
 long long base_16_string_to_base_10_llong(string base16){
     long long base10 = 0;
@@ -11,6 +11,7 @@ long long base_16_string_to_base_10_llong(string base16){
         
         base10 += p * num;
     }
+
     return base10;
 }
 
@@ -25,4 +26,10 @@ string base_10_llong_to_base_16_string(long long base10, int len){
     reverse(base16.begin(), base16.end());
     // cout << base16 << endl;
     return base16;
+}
+
+long long base_16_string_to_base_10_llong(string base16, int len){
+    long long base10 = base_16_string_to_base_10_llong(base16);
+    if(base10 >= (1 << (len - 1))) base10 -= (1 << len);
+    return base10;
 }
